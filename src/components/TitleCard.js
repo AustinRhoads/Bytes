@@ -5,7 +5,7 @@ export default function TitleCard(props) {
     const render_image = () => {
         if(props.image){
             return (
-                <img src={props.image} />
+                <img alt={props.recipe_name} src={props.image} />
             )
         }
     }
