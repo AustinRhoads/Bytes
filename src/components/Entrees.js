@@ -47,7 +47,9 @@ export default function Entrees(props) {
       if(searchResults.length > 0){
         console.log(searchResults)
         return searchResults.map(res => <TitleCard key={cuid()} recipe_name={res.title} id={res.id} image={res.image}/>)
-      } 
+      } else if(props.randomEntrees.length > 0){
+        return props.randomEntrees.map(res => <TitleCard key={cuid()} recipe_name={res.title} id={res.id} image={res.image}/>)
+      }
     }
 
 
