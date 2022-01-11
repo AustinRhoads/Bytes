@@ -13,6 +13,7 @@ import RecipeCard from './components/RecipeCard';
 import Navbar from './components/Navbar';
 
 import ENTREE_ACTIONS from './actions/EntreeActions'
+import APPETIZER_ACTIONS from './actions/AppetizerActions';
 
 //import SEARCH_ROUTES from './constants/SearchRoutes';
 
@@ -34,7 +35,8 @@ function App() {
   }
 
   const get_random_appetizers = () => {
-
+    console.log("started")
+    dispatch(APPETIZER_ACTIONS.GET_RANDOM_APPETIZERS())
   }
 
   const get_random_desserts = () => {
@@ -74,20 +76,20 @@ function App() {
 
   const set_random_recipes = () =>{
 
-    if(randomEntrees.length < 0){
+    if(randomEntrees.length <= 0){
       get_random_entrees()
     }
 
   
-    if(randomAppetizers.length < 0){
+    if(randomAppetizers.length <= 0){
       get_random_appetizers()
     }
   
-    if(randomDesserts.length < 0){
+    if(randomDesserts.length <= 0){
       get_random_desserts()
     }
   
-    if(randomDrinks.length < 0){
+    if(randomDrinks.length <= 0){
       get_random_drinks()
     }
 
@@ -101,7 +103,7 @@ function App() {
 
     set_random_recipes()
 
-
+    console.log(randomAppetizers)
    // get_random_entrees()
    
    // get_auto_entrees()

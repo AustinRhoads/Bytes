@@ -8,9 +8,9 @@ import DrinkReducer from "./DrinkReducer";
 
 const rootReducer = combineReducers({
     entreeState: EntreeReducer,
-    dessertState: AppetizerReducer,
-    appetizerState: DessertReducer,
-    drinkState: DrinkReducer
+    dessertState: DessertReducer,
+    appetizerState: AppetizerReducer,
+    drinkState: DrinkReducer,
 })
 
 export default rootReducer;

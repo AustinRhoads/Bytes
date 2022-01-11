@@ -1,5 +1,5 @@
 const initial_state = {
-
+    randomDrinks: JSON.parse(localStorage.getItem("random_drinks")) || [],
 }
 
 
