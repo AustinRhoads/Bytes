@@ -1,38 +1,100 @@
+
+:root{
+  --basil-orange: #FD5523;
+  --cream-background: #FFFBE6;
+  --basil-green-dark: #356859;
+  --basil-green-med: #37966F;
+  --basil-green-light: #B9E4C9;
+}
+
+body{
+  background-color: var(--cream-background);
+}
+
 .App {
   text-align: center;
+ 
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+h1{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 96pt;
+  /*color: var(--basil-orange);*/
+  color: var(--basil-green-dark);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#entree-results-container{
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.titlecard{
+  width: 390px;
+  height: 390px;
+  margin-left: 20px;
+  margin-right: 20px;
+  
+}
+.titlecard img{
+  max-width: 100%;
+  min-width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.titlecard-title{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14pt;
+  color: var(--basil-orange);
+}
+
+#navbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 350px;
+  margin: auto;
+}
+
+.nav-link{
+  font-family: 'Lekton', sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--basil-green-dark)
+}
+
+.selected{
+  text-decoration: underline;
+}
+
+.search-form{
+  
+  background-color: var(--cream-background);
+  width: 236px;
+  margin: auto;
+}
+
+.search-input{
+  border: 3px solid var(--basil-green-med);
+  background-color: var(--cream-background);
+  outline: none;
+  height: 17px;
+}
+
+.search-button{
+  font-family: 'Lekton', sans-serif;
+  text-transform: uppercase;
+  border: none;
+  color: var(--cream-background);
+  background-color: var(--basil-green-med);
+  height: 25px;
+  width: 55px;
+  float: right;
+  margin-top: 1px;
+
+  vertical-align: center;
+}
+
+.search-button:hover{
+  cursor: pointer;
 }

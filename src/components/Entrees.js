@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import cuid from 'cuid';
 
 import TitleCard from './TitleCard';
@@ -16,7 +16,7 @@ const SEARCH_SUFFIX = SEARCH_ROUTES.MAIN_COURSE + SEARCH_ROUTES.MAX_NUM_RESULTS
 const TEST_RECIPE_URL = "https://api.spoonacular.com/recipes/660312/analyzedInstructions?apiKey=" + process.env.REACT_APP_SPOON_API_KEY  + "&includeNutrition=false"
 
 
-export default function Entrees() {
+export default function Entrees(props) {
 
     const [searchTerm, setSearchTerm] = useState("")
     const [searchResults, setSearchResults] = useState([]);
@@ -46,24 +46,36 @@ export default function Entrees() {
     const display_search_results = () => {
       if(searchResults.length > 0){
         console.log(searchResults)
-        return searchResults.map(res => <TitleCard key={cuid()} recipe_name={res.title} recipe_id={res.id} image={res.image}/>)
+        return searchResults.map(res => <TitleCard key={cuid()} recipe_name={res.title} id={res.id} image={res.image}/>)
       } 
     }
+
+
+
+    useEffect(() => {
+        const li = document.querySelector('#entrees-link');
+        props.selectLink(li)
+     })
+
+
+
     return (
         <div>
             <h1>Entrées</h1>
 
-            <form onSubmit={(e) => submitSearch(e)}>
-            <input type="text" onChange={(e) => searchInputChangeHandler(e)} value = {searchTerm} />
-            <input type="submit" value = "Search"  />
+            <form className="search-form" onSubmit={(e) => submitSearch(e)}>
+            <input className="search-input" type="text" onChange={(e) => searchInputChangeHandler(e)} value = {searchTerm} />
+            <input className="search-button" type="submit" value = "Search"  />
             </form>
 
 
       
             <button onClick={() => test_recipe()}>TEST RECIPE</button>
 
-
+            <div id="entree-results-container">
             {display_search_results()}
+            </div>
+         
             
         </div>
     )
