@@ -6,6 +6,8 @@ const initial_state = {
 
 const DessertReducer = (state = initial_state, action) => {
     switch(action.type){
+        case "RANDOM_DESSERTS":
+            return {...state, randomDesserts: action.payload}
         default:
             return state;
     }

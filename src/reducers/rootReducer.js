@@ -4,6 +4,7 @@ import EntreeReducer from "./EntreeReducer";
 import AppetizerReducer from "./AppetizerReducer";
 import DessertReducer from "./DessertReducer";
 import DrinkReducer from "./DrinkReducer";
+import RecipeReducer from "./RecipeReducer";
 
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     dessertState: DessertReducer,
     appetizerState: AppetizerReducer,
     drinkState: DrinkReducer,
+    recipeState: RecipeReducer,
 })
 
 export default rootReducer;

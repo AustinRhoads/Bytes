@@ -30,6 +30,12 @@ h1{
   justify-content: center;
 }
 
+.display-titlecards{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .titlecard{
   width: 390px;
   height: 390px;
@@ -40,6 +46,10 @@ h1{
 .titlecard img{
   max-width: 100%;
   min-width: 100%;
+}
+
+.titlecard:hover{
+  cursor: pointer;
 }
 
 .titlecard-title{
@@ -58,6 +68,8 @@ h1{
 
 .nav-link{
   font-family: 'Lekton', sans-serif;
+  margin-left: 60px;
+  font-size: 20pt;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--basil-green-dark)
@@ -97,4 +109,10 @@ h1{
 
 .search-button:hover{
   cursor: pointer;
+}
+
+.recipe-title{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24pt;
+  color: var(--basil-orange);
 }

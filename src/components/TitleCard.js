@@ -1,9 +1,15 @@
 import React from 'react'
+import RECIPE_ACTIONS from '../actions/RecipeActions'
+
+import {useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
+
+
 
 export default function TitleCard(props) {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const render_image = () => {
         if(props.image){
@@ -14,6 +20,8 @@ export default function TitleCard(props) {
     }
 
     const goToRecipe = () => {
+        console.log("IS IT HERE??? ",props.recipe)
+        dispatch(RECIPE_ACTIONS.PUSH_RECIPE(props.recipe))
         navigate(`/recipes/${props.id}`)
     }
 

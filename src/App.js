@@ -14,8 +14,15 @@ import Navbar from './components/Navbar';
 
 import ENTREE_ACTIONS from './actions/EntreeActions'
 import APPETIZER_ACTIONS from './actions/AppetizerActions';
+import DESSERT_ACTIONS from './actions/DessertActions';
+import DRINK_ACTIONS from './actions/DrinkActions';
 
-//import SEARCH_ROUTES from './constants/SearchRoutes';
+
+//TODO: 
+//1. RECALL THE RANDOMS WITH NUTRIENT FACT
+//2. WRITE FUNCTION TO RECALL RANDOMS DAILY
+//3. PUT NUTRITION AND DIET FACTS IN RECIPE CARD
+//4. USE COMPONENT FROM AR CODE TO SHOW INGREDIENTS AND RECIPE STEPS SEPARATELY
 
 
 
@@ -26,6 +33,7 @@ function App() {
   const randomAppetizers = useSelector(state => state.appetizerState.randomAppetizers)
   const randomDesserts = useSelector(state => state.dessertState.randomDesserts)
   const randomDrinks = useSelector(state => state.drinkState.randomDrinks)
+ 
 
   const dispatch = useDispatch()
 
@@ -40,29 +48,13 @@ function App() {
   }
 
   const get_random_desserts = () => {
-
+    dispatch(DESSERT_ACTIONS.GET_RANDOM_DESSERTS())
   }
 
   const get_random_drinks = () => {
-
+    dispatch(DRINK_ACTIONS.GET_RANDOM_DRINKS())
   }
- // const get_auto_appitizers = () => {
- //   fetch(SEARCH_ROUTES.AUTO_APPS_URL).then(resp => resp.json()).then(obj => {
- //   setAutoAppitizers([])
- //   })
- // }
-//
- // const get_auto_desserts = () => {
- //   fetch(SEARCH_ROUTES.AUTO_DESSERTS_URL).then(resp => resp.json()).then(obj => {
- //   setAutoDesserts([])
- //   })
- // }
-//
- // const get_auto_drinks = () => {
- //   fetch(SEARCH_ROUTES.AUTO_DRINKS_ENTREES_URL).then(resp => resp.json()).then(obj => {
- //   setAutoDrinks([])
- //   })
- // }
+
 
 
   const selectLink = (li) => {
@@ -103,16 +95,8 @@ function App() {
 
     set_random_recipes()
 
-    console.log(randomAppetizers)
-   // get_random_entrees()
-   
-   // get_auto_entrees()
-   // get_auto_appitizers()
-   // get_auto_desserts()
-   // get_auto_drinks() 
-   //var today = new Date()   
-   //console.log(String(today.getDate()).padStart(2, '0'))
-  }, [randomEntrees, randomAppetizers, randomDesserts, randomDrinks])
+
+  })
 
 
 
@@ -135,7 +119,7 @@ function App() {
                     <Route  path="/entrees" element={<Entrees randomEntrees={randomEntrees} selectLink={selectLink} />} />
                     <Route  path="/desserts" element={ <Desserts randomDesserts={randomDesserts} selectLink={selectLink}   /> } />
                     <Route  path="/drinks" element={ <Drinks randomDrinks={randomDrinks} selectLink={selectLink}  /> } />
-                    <Route  path="/recipes/:id" element={<RecipeCard />} />
+                    <Route  path="/recipes/:id" element={<RecipeCard  />} />
                 </Routes>
 
             </Router>

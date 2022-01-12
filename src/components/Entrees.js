@@ -10,7 +10,7 @@ import SEARCH_ROUTES from '../constants/SearchRoutes';
 
 
 const SEARCH_PREFIX = SEARCH_ROUTES.URL  + SEARCH_ROUTES.API_KEY_PREFIX  +  SEARCH_ROUTES.QUERY 
-const SEARCH_SUFFIX = SEARCH_ROUTES.MAIN_COURSE + SEARCH_ROUTES.MAX_NUM_RESULTS 
+const SEARCH_SUFFIX = SEARCH_ROUTES.MAIN_COURSE + "&addRecipeInformation=true" + SEARCH_ROUTES.MAX_NUM_RESULTS 
 
 
 const TEST_RECIPE_URL = "https://api.spoonacular.com/recipes/660312/analyzedInstructions?apiKey=" + process.env.REACT_APP_SPOON_API_KEY  + "&includeNutrition=false"
@@ -19,6 +19,7 @@ const TEST_RECIPE_URL = "https://api.spoonacular.com/recipes/660312/analyzedInst
 export default function Entrees(props) {
 
     const [searchTerm, setSearchTerm] = useState("")
+   
     const [searchResults, setSearchResults] = useState([]);
   
     const searchInputChangeHandler = (e) => {
@@ -34,6 +35,7 @@ export default function Entrees(props) {
       fetch(search_url).then(resp => resp.json()).then(obj => {
   
         setSearchResults(obj.results);
+        console.log(obj.results)
   
       })
   
@@ -45,10 +47,9 @@ export default function Entrees(props) {
   
     const display_search_results = () => {
       if(searchResults.length > 0){
-        console.log(searchResults)
-        return searchResults.map(res => <TitleCard key={cuid()} recipe_name={res.title} id={res.id} image={res.image}/>)
+        return searchResults.map(res => <TitleCard key={cuid()}  recipe={res} recipe_name={res.title} id={res.id} image={res.image}/>)
       } else if(props.randomEntrees.length > 0){
-        return props.randomEntrees.map(res => <TitleCard key={cuid()} recipe_name={res.title} id={res.id} image={res.image}/>)
+        return props.randomEntrees.map(res => <TitleCard key={cuid()} recipe={res} recipe_name={res.title} id={res.id} image={res.image}/>)
       }
     }
 
@@ -57,13 +58,15 @@ export default function Entrees(props) {
     useEffect(() => {
         const li = document.querySelector('#entrees-link');
         props.selectLink(li)
+
+       
      })
 
 
 
     return (
         <div>
-            <h1>Entrées</h1>
+            
 
             <form className="search-form" onSubmit={(e) => submitSearch(e)}>
             <input className="search-input" type="text" onChange={(e) => searchInputChangeHandler(e)} value = {searchTerm} />
