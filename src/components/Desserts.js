@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
-import cuid from 'cuid';
+//import cuid from 'cuid';
 
-import TitleCard from './TitleCard'
+//import TitleCard from './TitleCard'
 
 
 
@@ -10,14 +10,10 @@ export default function Desserts(props) {
 
     const display_random_desserts = () => {
 
-        if(props.randomDesserts.length > 0){
-            return props.randomDesserts.map(res => {
-                if(res.image){
-                  return  <TitleCard key={cuid()} recipe={res} recipe_name={res.title} id={res.id} image={res.image}/>
-                }
-                
-            } )
-          }
+
+        return  props.return_recipes_as_titlecards(props.randomDesserts)
+
+
     }
 
     useEffect(() => {

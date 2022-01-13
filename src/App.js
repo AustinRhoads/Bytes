@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch,  } from 'react-redux';
 import './App.css';
 import {BrowserRouter as Router, Routes, Route, Navigate, } from 'react-router-dom'
+import cuid from 'cuid';
 
 import Entrees from './components/Entrees';
 import Appetizers from './components/Appetizers';
 import Desserts from './components/Desserts';
 import Drinks from './components/Drinks';
+import TitleCard from './components/TitleCard';
 
 import RecipeCard from './components/RecipeCard';
 
@@ -23,6 +25,7 @@ import DRINK_ACTIONS from './actions/DrinkActions';
 //2. WRITE FUNCTION TO RECALL RANDOMS DAILY
 //3. PUT NUTRITION AND DIET FACTS IN RECIPE CARD
 //4. USE COMPONENT FROM AR CODE TO SHOW INGREDIENTS AND RECIPE STEPS SEPARATELY
+//5. FIX 
 
 
 
@@ -93,13 +96,43 @@ function App() {
 
   }
 
+  const remove_recipes_without_image = (recipe_array) => {
+    for(let x = 0; x < recipe_array.length; x++){
+      if(!recipe_array[x].image){
+          recipe_array.splice(x, 1)
+      }
+  }
+  }
+
+  const return_recipes_as_titlecards = (recipe_array) => {
+
+      
+
+      if(recipe_array.length > 0){
+
+        remove_recipes_without_image(recipe_array);
+        
+        
+        return(
+            <div>
+                {recipe_array.map(res => { 
+                    
+                        return <TitleCard key={cuid()} recipe={res} recipe_name={res.title} id={res.id} image={res.image}/> 
+                    } 
+                )}
+            </div>
+        )
+    }
+
+  }
+
 
 
   useEffect(() => {
 
     set_random_recipes()
    
-    console.log(randomEntrees )
+   
   })
 
 
@@ -119,10 +152,10 @@ function App() {
 
                      
                     <Route  path="/" element={<Navigate to="/entrees"/>}/>
-                    <Route  path="/appetizers" element={ <Appetizers randomAppetizers={randomAppetizers} selectLink={selectLink}  /> } />
-                    <Route  path="/entrees" element={<Entrees randomEntrees={randomEntrees} selectLink={selectLink} />} />
-                    <Route  path="/desserts" element={ <Desserts randomDesserts={randomDesserts} selectLink={selectLink}   /> } />
-                    <Route  path="/drinks" element={ <Drinks randomDrinks={randomDrinks} selectLink={selectLink}  /> } />
+                    <Route  path="/appetizers" element={ <Appetizers randomAppetizers={randomAppetizers} selectLink={selectLink} return_recipes_as_titlecards={return_recipes_as_titlecards}   /> } />
+                    <Route  path="/entrees" element={<Entrees randomEntrees={randomEntrees} selectLink={selectLink} return_recipes_as_titlecards={return_recipes_as_titlecards} />} />
+                    <Route  path="/desserts" element={ <Desserts randomDesserts={randomDesserts} selectLink={selectLink} return_recipes_as_titlecards={return_recipes_as_titlecards}   /> } />
+                    <Route  path="/drinks" element={ <Drinks randomDrinks={randomDrinks} selectLink={selectLink} return_recipes_as_titlecards={return_recipes_as_titlecards}  /> } />
                     <Route  path="/recipes/:id" element={<RecipeCard  />} />
                 </Routes>
 
