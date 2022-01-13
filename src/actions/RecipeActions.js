@@ -13,7 +13,7 @@ const RECIPE_ACTIONS = {
     PUSH_RECIPE: (recipe) =>{
       
         return(dispatch) => {
-            console.log("PUSH IT REAL GOOD: ", recipe)
+            //console.log("PUSH IT REAL GOOD: ", recipe)
             dispatch({type: "SETTING_RECIPE", payload: recipe})
         }
     }

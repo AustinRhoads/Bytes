@@ -4,11 +4,14 @@ import { useParams } from 'react-router-dom'
 import cuid from 'cuid';
 
 import RECIPE_ACTIONS from '../actions/RecipeActions'
+import { localBin } from 'npm';
 
 
 export default function RecipeCard(props) {
 
     const params = useParams();
+    
+
     const [id] = useState(params.id);
     const recipe = useSelector(state => state.recipeState.current_recipe);
     const instructions = useSelector(state => state.recipeState.current_recipe.analyzedInstructions);
@@ -26,15 +29,33 @@ export default function RecipeCard(props) {
     const getRecipe = () => {
 
        
-        if(!recipe_retrieved()){
+        if(!recipe_retrieved() && !localStorage.getItem(id)){
             dispatch(RECIPE_ACTIONS.GET_RECIPE(id))
-          console.log("recipe id: ", recipe.id, "props id: ", parseInt(id))
+          //console.log("recipe id: ", recipe.id, "props id: ", parseInt(id))
+          console.log("where it at???")
+        } else if (!recipe_retrieved() && localStorage.getItem(id)){
+            console.log(JSON.parse(localStorage.getItem(id)))
+            dispatch(RECIPE_ACTIONS.PUSH_RECIPE(JSON.parse(localStorage.getItem(id))))
         }
         
     }
 
     const recipe_retrieved = () => {
         return recipe.id === parseInt(id)
+    }
+
+    const set_recipe_in_local = () => {
+
+        if(!localStorage.getItem(id)){
+            localStorage.setItem(id, JSON.stringify(recipe))
+        }
+        
+    }
+
+    const clean_up_local = () =>{
+       // localStorage.clear()
+            localStorage.removeItem(id)
+            console.log("removed: ", id)
     }
 
     const render_ingredients = () => {
@@ -69,19 +90,16 @@ export default function RecipeCard(props) {
         }
     }
 
-    const render_summary = () => {
-        if(recipe_retrieved()){
-         
-            return (
-                <div>{recipe.summary}</div>
-            )
-  
-        }
-    }
+
 
 
     useEffect(() => {
        getRecipe()
+       set_recipe_in_local()
+       console.log("mounted: ", id)
+       return () => {
+        clean_up_local()
+       }
                
     })
 

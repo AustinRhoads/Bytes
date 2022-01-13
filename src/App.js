@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch,  } from 'react-redux';
 import './App.css';
-import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route, Navigate, } from 'react-router-dom'
 
 import Entrees from './components/Entrees';
 import Appetizers from './components/Appetizers';
@@ -36,6 +36,8 @@ function App() {
  
 
   const dispatch = useDispatch()
+  
+  
 
 
   const get_random_entrees = () => {
@@ -54,6 +56,8 @@ function App() {
   const get_random_drinks = () => {
     dispatch(DRINK_ACTIONS.GET_RANDOM_DRINKS())
   }
+
+
 
 
 
@@ -94,8 +98,8 @@ function App() {
   useEffect(() => {
 
     set_random_recipes()
-
-
+   
+    console.log(randomEntrees )
   })
 
 
