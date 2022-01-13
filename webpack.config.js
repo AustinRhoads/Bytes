@@ -15,8 +15,9 @@ module.exports = {
             events: require.resolve('events'),
             http: require.resolve('stream-http'),
             https: require.resolve('https-browserify'),
-            os: require.resolve('os-browserify/browser'),//first problem
+            os: require.resolve('os-browserify/browser'),// problem
             path: require.resolve('path-browserify'),
+           // path: false,
             punycode: require.resolve('punycode'),
             process: require.resolve('process/browser'),
             querystring: require.resolve('querystring-es3'),
@@ -34,3 +35,7 @@ module.exports = {
     },
    
 }
+
+
+//the real one /home/austin/projects/byte/node_modules/react-scripts/config/webpack.config.js
+//line 310
