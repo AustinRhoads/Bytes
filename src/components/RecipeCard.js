@@ -31,8 +31,8 @@ export default function RecipeCard(props) {
        
         if(!recipe_retrieved() && !localStorage.getItem(id)){
             dispatch(RECIPE_ACTIONS.GET_RECIPE(id))
-          //console.log("recipe id: ", recipe.id, "props id: ", parseInt(id))
-          console.log("where it at???")
+          
+          console.log("had to reload from API")
         } else if (!recipe_retrieved() && localStorage.getItem(id)){
             console.log(JSON.parse(localStorage.getItem(id)))
             dispatch(RECIPE_ACTIONS.PUSH_RECIPE(JSON.parse(localStorage.getItem(id))))
@@ -61,7 +61,7 @@ export default function RecipeCard(props) {
     const render_ingredients = () => {
       
             if(ingredients){
-                return ingredients.map(ing => <li key={cuid()}>{ing.original}</li>)
+                return ingredients.map(ing => <div className="ingredient" key={cuid()}>{ing.original}</div>)
             }
         
 
@@ -71,12 +71,12 @@ export default function RecipeCard(props) {
        
         if(instructions){
             return instructions[0].steps.map(ins => 
-                <li key={cuid()}>
+                <div className="step" key={cuid()}>
                     <div>
                         <h2>No. {ins.number}</h2> 
                         <p>{ins.step}</p>
                     </div>
-                </li>)
+                </div>)
         }
     
     }
@@ -104,7 +104,7 @@ export default function RecipeCard(props) {
     })
 
     return (
-        <div>
+        <div className="recipe-card">
             {render_image()}
             <h2 className="recipe-title">{!!recipe ? recipe.title: ""}</h2>
          
@@ -115,20 +115,20 @@ export default function RecipeCard(props) {
         <div>
             <h3>ingredients</h3>
 
-            <ul>
+            <div>
                         {render_ingredients()}
-            </ul>
+            </div>
 
         </div>
  
 
     <div>
-        <h3>instructions</h3>
+        <h3>Directions</h3>
 
-        <ul>
+        <div className="steps-container">
 
             {render_instructions()}
-        </ul>
+        </div>
 
     </div>
 

@@ -117,7 +117,7 @@ function App() {
             <div>
                 {recipe_array.map(res => { 
                     
-                        return <TitleCard key={cuid()} recipe={res} recipe_name={res.title} id={res.id} image={res.image}/> 
+                        return <TitleCard key={cuid()} recipe={res} recipe_name={res.title} recipe_id={res.id} image={res.image}/> 
                     } 
                 )}
             </div>

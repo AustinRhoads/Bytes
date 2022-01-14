@@ -116,3 +116,27 @@ h1{
   font-size: 24pt;
   color: var(--basil-orange);
 }
+
+.recipe-card{
+  font-family: 'Lekton', sans-serif;
+}
+
+.ingredient{
+  font-family: 'Lekton', sans-serif;
+  color: var(--basil-green-dark);
+}
+
+.steps-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.step{
+  font-family: 'Lekton', sans-serif;
+  color: var(--basil-green-dark);
+  background-color: var(--basil-green-light);
+  width: 390px;
+  margin-top: 22px;
+}

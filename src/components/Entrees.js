@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import cuid from 'cuid';
+//import cuid from 'cuid';
 
-import TitleCard from './TitleCard';
+//import TitleCard from './TitleCard';
 
 
 import SEARCH_ROUTES from '../constants/SearchRoutes';
@@ -47,9 +47,9 @@ export default function Entrees(props) {
   
     const display_search_results = () => {
       if(searchResults.length > 0){
-        return searchResults.map(res => <TitleCard key={cuid()}  recipe={res} recipe_name={res.title} id={res.id} image={res.image}/>)
+        return  props.return_recipes_as_titlecards(searchResults)
       } else if(props.randomEntrees.length > 0){
-        return  props.return_recipes_as_titlecards(props.randomEntrees) //props.randomEntrees.map(res => <TitleCard key={cuid()} recipe={res} recipe_name={res.title} id={res.id} image={res.image}/>)
+        return  props.return_recipes_as_titlecards(props.randomEntrees)
       }
     }
 

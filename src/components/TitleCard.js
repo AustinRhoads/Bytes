@@ -22,7 +22,7 @@ export default function TitleCard(props) {
     const goToRecipe = () => {
         console.log("IS IT HERE??? ",props.recipe)
         dispatch(RECIPE_ACTIONS.PUSH_RECIPE(props.recipe))
-        navigate(`/recipes/${props.id}`)
+        navigate(`/recipes/${props.recipe_id}`)
     }
 
     return (
