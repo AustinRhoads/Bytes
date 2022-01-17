@@ -94,6 +94,7 @@ export default function RecipeCard(props) {
 
 
     useEffect(() => {
+        
        getRecipe()
        set_recipe_in_local()
        console.log("mounted: ", id)

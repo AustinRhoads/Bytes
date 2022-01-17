@@ -9,6 +9,7 @@ import Appetizers from './components/Appetizers';
 import Desserts from './components/Desserts';
 import Drinks from './components/Drinks';
 import TitleCard from './components/TitleCard';
+import SearchPage from './components/SearchPage';
 
 import RecipeCard from './components/RecipeCard';
 
@@ -25,7 +26,7 @@ import DRINK_ACTIONS from './actions/DrinkActions';
 //2. WRITE FUNCTION TO RECALL RANDOMS DAILY
 //3. PUT NUTRITION AND DIET FACTS IN RECIPE CARD
 //4. USE COMPONENT FROM AR CODE TO SHOW INGREDIENTS AND RECIPE STEPS SEPARATELY
-//5. FIX 
+//5. RENDER ALL RETURNED RECIPES UPON REQUEST FORM API AFTER LOCAL STORAGE RELOADED.
 
 
 
@@ -156,6 +157,7 @@ function App() {
                     <Route  path="/entrees" element={<Entrees randomEntrees={randomEntrees} selectLink={selectLink} return_recipes_as_titlecards={return_recipes_as_titlecards} />} />
                     <Route  path="/desserts" element={ <Desserts randomDesserts={randomDesserts} selectLink={selectLink} return_recipes_as_titlecards={return_recipes_as_titlecards}   /> } />
                     <Route  path="/drinks" element={ <Drinks randomDrinks={randomDrinks} selectLink={selectLink} return_recipes_as_titlecards={return_recipes_as_titlecards}  /> } />
+                    <Route path="/recipes" element={ <SearchPage selectLink={selectLink} /> } />
                     <Route  path="/recipes/:id" element={<RecipeCard  />} />
                 </Routes>
 
